@@ -4,12 +4,10 @@
 \alias{qsavem}
 \title{qsavem}
 \usage{
-qsavem(file, ...)
+qsavem(...)
 }
 \arguments{
-\item{file}{the file name/path.}
-
-\item{...}{objects to serialize. Named arguments will be passed to qsave during saving. Un-named arguments will be saved.}
+\item{...}{objects to serialize. Named arguments will be passed to qsave during saving. Un-named arguments will be saved. A named file argument is required.}
 }
 \description{
 Saves (serializes) multiple objects to disk.
@@ -28,11 +26,11 @@ myfile <- tempfile()
 qsavem(x1, x2, file=myfile)
 rm(x1, x2)
 qload(myfile)
-exists(c('x1', 'x2')) # returns true
+exists('x1') && exists('x2') # returns true
 
 # qs support multithreading
 qsavem(x1, x2, file=myfile, nthreads=2)
 rm(x1, x2)
 qload(myfile, nthreads=2)
-exists(c('x1', 'x2')) # returns true
+exists('x1') && exists('x2') # returns true
 }
